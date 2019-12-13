@@ -7,8 +7,9 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-        root: .
-        paths: .
+          root: .
+          paths: .
+
   unit_tests:
     working_directory: ~/sayfizz
     docker:
