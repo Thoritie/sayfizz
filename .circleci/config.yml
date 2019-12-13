@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  checkout_code:
+    working_directory: ~/sayfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - persist_to_workspace:
+        root: .
+        paths: .
+  unit_tests:
+    working_directory: ~/sayfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run unittest
+          command: python fizzbuzztest.py
+
+workflows:
+  version: 2
+  say-fizz-pipeline:
+    jobs:
+      - checkout_code
+      - unit_tests:
+          requires:
+            - checkout_code
