@@ -33,19 +33,6 @@ jobs:
           echo $DOCKER_PASS | docker login -u roseth --password-stdin
           docker push roseth/sayfizz:latest
 
-          # name: Build image
-          # command: docker-compose -f docker-compose.yml build
-
-
-  # push_image:
-  #   working_directory: ~/sayfizz
-  #   docker:
-  #     - image: circleci/python:3.6.1
-  #   steps:
-  #     - run:
-  #         name: Push image
-  #         command: docker login
-
 workflows:
   version: 2
   say-fizz-pipeline:
@@ -57,6 +44,3 @@ workflows:
       - build_image:
           requires:
             - unit_tests
-      # - push_image:
-      #     requires:
-      #       - build_image
