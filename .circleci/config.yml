@@ -21,6 +21,24 @@ jobs:
           name: Run unittest
           command: python fizzbuzztest.py
 
+  build_image:
+    working_directory: ~/sayfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - run:
+          name: Build image
+          command: sudo docker build -t sayfizz:latest .
+
+  push_image:
+    working_directory: ~/sayfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - run:
+          name: Push image
+          command: docker login
+
 workflows:
   version: 2
   say-fizz-pipeline:
@@ -29,3 +47,9 @@ workflows:
       - unit_tests:
           requires:
             - checkout_code
+      - build_image:
+          requires:
+            - unit_tests
+      - push_image:
+          requires:
+            - build_image
