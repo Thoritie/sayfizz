@@ -28,7 +28,7 @@ jobs:
     steps:
       - run:
           name: Build image
-          command: docker build -t sayfizz:latest .
+          command: docker-compose -f docker-compose.yml build
 
   push_image:
     working_directory: ~/sayfizz
