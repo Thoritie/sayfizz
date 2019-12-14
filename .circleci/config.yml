@@ -26,6 +26,7 @@ jobs:
     docker:
       - image: circleci/python:3.6.1
     steps:
+      - setup_remote_docker
       - attach_workspace:
           at: .
       - run: |
