@@ -57,6 +57,6 @@ workflows:
       - build_image:
           requires:
             - unit_tests
-      - push_image:
-          requires:
-            - build_image
+      # - push_image:
+      #     requires:
+      #       - build_image
