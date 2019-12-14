@@ -28,7 +28,7 @@ jobs:
     steps:
       - run:
           name: Build image
-          command: sudo docker build -t sayfizz:latest .
+          command: docker build -t sayfizz:latest .
 
   push_image:
     working_directory: ~/sayfizz
