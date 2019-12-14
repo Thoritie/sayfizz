@@ -28,18 +28,23 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: Build image
-          command: docker-compose -f docker-compose.yml build
+      - run: |
+          docker build -t roseth/sayfizz:latest .
+          echo $DOCKER_PASS | docker login -u roseth --password-stdin
+          docker push roseth/sayfizz:latest
 
-  push_image:
-    working_directory: ~/sayfizz
-    docker:
-      - image: circleci/python:3.6.1
-    steps:
-      - run:
-          name: Push image
-          command: docker login
+          # name: Build image
+          # command: docker-compose -f docker-compose.yml build
+
+
+  # push_image:
+  #   working_directory: ~/sayfizz
+  #   docker:
+  #     - image: circleci/python:3.6.1
+  #   steps:
+  #     - run:
+  #         name: Push image
+  #         command: docker login
 
 workflows:
   version: 2
