@@ -31,7 +31,7 @@ jobs:
           at: .
       - run: |
           docker build -t roseth/sayfizz:latest .
-          echo $DOCKER_PASS | docker login -u roseth --password-stdin
+          docker login -u roseth -p $DOCKER_PASS
           docker push roseth/sayfizz:latest
 
 workflows:
